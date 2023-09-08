@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Button from "./components/Button";
-
+import React from "react";
 function App() {
   const [stack, setStack] = useState([]);
   const [num, setNum] = useState("0");
@@ -142,7 +142,10 @@ function App() {
           >
             {`${stack[0] ? stack[0] : ""} ${stack[1] ? stack[1] : ""}`}
           </div>
-          <div className={`col-span-4 h-8 flex items-center justify-end text-white px-1 pb-2`}>
+          <div
+            data-testid="calculation"
+            className={`col-span-4 h-8 flex items-center justify-end text-white px-1 pb-2`}
+          >
             {num}
           </div>
           {numbers.map((item, idx) => (
