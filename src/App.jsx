@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "./components/Button";
 
 function App() {
@@ -31,7 +31,6 @@ function App() {
     try {
       const newStack = [...stack, parseFloat(num)];
       let result = newStack[0];
-
       for (let i = 1; i < newStack.length; i += 2) {
         const operator = newStack[i];
         const operand = newStack[i + 1];
@@ -61,6 +60,12 @@ function App() {
       setNum("Error");
     }
   };
+
+  useEffect(() => {
+    if (num.length > 3 && /[a-zA-Z]/.test(num)) {
+      setNum(num.replace(/[^0-9.-]/g, ""));
+    }
+  }, [num]);
 
   const handleButtonClick = (item) => {
     const clearInput = () => {
